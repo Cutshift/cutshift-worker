@@ -1,0 +1,38 @@
+{
+  "version": "0.2.2",
+  "releasesUrl": "https://github.com/Cutshift/cutshift-worker/releases/download",
+  "targets": {
+    "linux-x64": {
+      "sha256": "f523279874406b388533860f1f1805dc3436a910df40225a44cb5da94f3f635f",
+      "compositor": {
+        "url": "https://registry.npmjs.org/@remotion/compositor-linux-x64-gnu/-/compositor-linux-x64-gnu-4.0.539.tgz",
+        "integrity": "sha512-HecJAZPrje7UVO37E6qq/lb7GXn+bm5UQUVDji02BwIe1eMQq75fpkcOQkrZ4VdV8KnGFKAGQq3CbFiplmn/ZA==",
+        "version": "4.0.539"
+      }
+    },
+    "linux-arm64": {
+      "sha256": "b9da12ce79f08f95f5fd84913a347489ab9e54f70ce442514e3d0efbbee342e0",
+      "compositor": {
+        "url": "https://registry.npmjs.org/@remotion/compositor-linux-arm64-gnu/-/compositor-linux-arm64-gnu-4.0.539.tgz",
+        "integrity": "sha512-P3gdsInE2eLomuOZMDiCImRb12wVYNzvzuvL0nqVZ2vskhO207lVU+9B5ceb6MyaNRo6jxOzY67iaTxf+BlO7A==",
+        "version": "4.0.539"
+      }
+    },
+    "darwin-arm64": {
+      "sha256": "dce3d2e685e87ca0c64371b8bf39e2955b3caa1cf5dd1f2e675dadab0eeee680",
+      "compositor": {
+        "url": "https://registry.npmjs.org/@remotion/compositor-darwin-arm64/-/compositor-darwin-arm64-4.0.539.tgz",
+        "integrity": "sha512-B5jSFaTWwa7KNeSHcRGNlBzJiOfPjpvDjkSuWrUx721GiBtqUhm2oIh2147cxsESQMHlGbbk6cxMKBqUrDxrvg==",
+        "version": "4.0.539"
+      }
+    },
+    "darwin-x64": {
+      "sha256": "699ed5103573dc4d1bc0954167cc67c5f6ce2fa676eb3e40322d8ae688698dbc",
+      "compositor": {
+        "url": "https://registry.npmjs.org/@remotion/compositor-darwin-x64/-/compositor-darwin-x64-4.0.539.tgz",
+        "integrity": "sha512-YneSxqpwmdXvGi6+I69o+721Cd0Ff5y5Qc6m98ahKnrX6AuR37hl+yC1oT/gQHE30POYRfSxCADTNGqY5AmP9Q==",
+        "version": "4.0.539"
+      }
+    }
+  }
+}
