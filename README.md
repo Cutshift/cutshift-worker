@@ -21,6 +21,41 @@ The installer puts the worker in `~/.cutshift` without sudo, checks the download
 it changes your PATH. Each release's `SHA256SUMS` is signed with minisign; `cutshift self update` checks that
 signature before it installs an update.
 
+The installer adds one line to the file your login shell reads (zsh: `~/.zshrc`; bash: `~/.bashrc` and
+`~/.profile` or `~/.bash_profile`; fish: `conf.d/cutshift.fish`). A file that is a symlink or not writable, such as
+a dotfile managed by home-manager, stays untouched: the installer prints the line to add there yourself.
+
+### Nix and NixOS
+
+On NixOS the installer installs nothing and points here: the worker is a Nix flake. Its `cutshift` uses nixpkgs'
+ffmpeg, Chromium, Python and uv, and the release's video renderer patched for Nix, so nothing it runs needs nix-ld.
+The flake builds the release named in `sources.json` and pins nixpkgs; it allows this one unfree package and nothing
+else.
+
+```sh
+nix profile install github:Cutshift/cutshift-worker          # into your user profile
+nix run github:Cutshift/cutshift-worker -- --version          # or try it without installing
+```
+
+Declaratively, add the input to your flake and the package to your configuration (pass `inputs` to your modules
+through `specialArgs` or `extraSpecialArgs`):
+
+```nix
+# flake.nix
+inputs.cutshift-worker.url = "github:Cutshift/cutshift-worker";   # a fixed version: …/cutshift-worker/v0.2.2 (0.2.2 is the first with the flake)
+
+# home-manager
+home.packages = [ inputs.cutshift-worker.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+
+# or NixOS
+environment.systemPackages = [ inputs.cutshift-worker.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+```
+
+The flake has packages for x86_64-linux (tested on NixOS) and, built the same way but not tested yet, aarch64-linux,
+aarch64-darwin and x86_64-darwin (on macOS only ffmpeg comes from nixpkgs). It also has an overlay (`overlays.default`, `pkgs.cutshift-worker`). Update with `nix flake update
+cutshift-worker` (or `nix profile upgrade`), not with `cutshift self update`. The speech environment (Python packages
+and voice models) is still set up in `~/.cutshift` on first use.
+
 To check a download by hand:
 
 ```sh
@@ -36,14 +71,22 @@ RWRi0BMtdbIquQFTMETvDUY/DbNnpKTlaTLiAhpOW6k9PrVWhPJpqaJS
 
 ## First steps
 
+1. Create a project in the [studio](https://app.cutshift.hermes-technology.de). Its id is in the address,
+   `…/p/<id>/`; the project's page shows the next commands with the id filled in, ready to copy.
+2. On your computer:
+
 ```sh
-cutshift init my-film          # a new project folder
+cutshift init my-film --project <id>   # the project folder, linked to your studio project
 cd my-film
-cutshift worker login          # approve this machine once in your browser
-cutshift worker --project <id> # your project in the studio shows this line with its id, ready to copy
+cutshift worker login                  # once per computer: approve it in your browser
+cutshift worker                        # keep it running while you work in the studio
 ```
 
-Then open your project in the [studio](https://app.cutshift.hermes-technology.de).
+Already have a project folder? Link it once with `cutshift worker --project <id>` in it; after that, plain
+`cutshift worker` is enough there.
+
+The first start downloads ffmpeg and a headless browser (about 280 MB) in the background; the first narration sets
+up the voices (about 450 MB more). The worker shows what it downloads and when it is ready.
 
 Updating and removing:
 
