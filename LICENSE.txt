@@ -1,0 +1,140 @@
+cutshift worker — End-User Licence Agreement (EULA)
+Version 1, 16 November 2026
+
+This file holds the agreement in English and in German. The German version is the binding one; the English
+version is a translation for convenience.
+
+Third-party components and their licences: THIRD_PARTY_NOTICES and licences/.
+
+===================================================================================================================
+ENGLISH (translation)
+===================================================================================================================
+
+1. Provider and scope
+   This agreement is between Jan Hermes, Deisterstr. 23, 30890 Barsinghausen, Germany, e-mail cutshift@hermes-technology.de ("the
+   provider"), and you ("the user"). It covers the program "cutshift worker" (the command `cutshift`), its updates
+   and its documentation ("the software"). It does not cover the third-party components listed in section 6.
+   The agreement is concluded when you install or use the software after having been referred to it.
+
+2. Licence
+   During the early access period the provider grants you, free of charge, a simple (non-exclusive),
+   non-transferable, non-sublicensable right, revocable under section 8, to install the software on computers you
+   control and to use it together with the hosted cutshift service (https://app.cutshift.hermes-technology.de) for
+   your own purposes, including making films for your business.
+
+3. Restrictions
+   Unless mandatory law allows it, you may not
+   a) copy, distribute, rent, lend, publish or otherwise make the software available to third parties, except for
+      copies needed to install, run and back it up;
+   b) sublicense the software or transfer this licence;
+   c) modify, translate, adapt or create derivative works of the software, except as § 69d (1) of the German
+      Copyright Act (UrhG) permits (in particular to correct errors);
+   d) decompile or disassemble it, or otherwise derive its source code, except as § 69e UrhG permits (to obtain
+      the information needed for interoperability) and as § 69d (2) and (3) UrhG permit;
+   e) remove or alter copyright notices, licence texts or the attribution of third-party components.
+   The software and all rights in it remain with the provider.
+
+4. Early access, no service levels
+   The software is in early access. It may change, contain errors or stop being offered. The provider owes no
+   updates, maintenance, support or availability of the hosted service.
+
+5. Warranty and liability
+   The software is provided free of charge. The provider is therefore liable only for intent and gross negligence,
+   and for defects in quality or title only where he fraudulently concealed them (§§ 521, 523, 524 BGB, by
+   analogy). This limitation does not apply to liability for injury to life, body or health,
+   to liability under the Product Liability Act (Produkthaftungsgesetz) or to liability under a guarantee given.
+   Please back up your data regularly; the software works on your files.
+
+6. Third-party components
+   The software contains and, on first use, downloads third-party components (among them Node.js, FFmpeg, a
+   headless Chromium, uv, Python and voice models). They are subject to their own licences, which take precedence
+   over this agreement for those components and are listed in THIRD_PARTY_NOTICES and the licences/ directory.
+   Nothing in this agreement restricts the rights those licences grant you.
+
+7. Data
+   What the software sends to the hosted service and which third-party servers it contacts is described in the
+   privacy policy at https://cutshift.hermes-technology.de/datenschutz/ (German:
+   https://cutshift.hermes-technology.de/de/datenschutz/).
+
+8. Term and termination
+   This licence runs until the end of the early access period or until it is terminated. You may end it at any
+   time by deleting the software (`cutshift self uninstall`). The provider may end it with two weeks' notice by
+   e-mail or an announcement on the website, and at once for good cause, in particular a breach of section 3.
+   When it ends you must stop using the software and delete it. Sections 3, 5 and 10 survive.
+
+9. Changes
+   The provider may change this agreement for future versions of the software. A changed agreement applies to an
+   update only once you install that update; the provider points out material changes beforehand. Changes never
+   apply to versions already installed.
+
+10. Governing law, severability
+   German law applies, excluding the UN Convention on Contracts for the International Sale of Goods. If you are a
+   consumer, this choice of law does not deprive you of the protection of the mandatory provisions of the law of
+   the country where you habitually reside. Should a provision be invalid, the rest of the agreement remains in
+   force.
+
+===================================================================================================================
+DEUTSCH (verbindlich)
+===================================================================================================================
+
+1. Anbieter und Gegenstand
+   Dieser Vertrag besteht zwischen Jan Hermes, Deisterstr. 23, 30890 Barsinghausen, Deutschland, E-Mail cutshift@hermes-technology.de
+   („Anbieter“), und dir („Nutzer“). Er gilt für das Programm „cutshift worker“ (der Befehl `cutshift`), seine
+   Updates und seine Dokumentation („Software“). Er gilt nicht für die in Ziffer 6 genannten Komponenten Dritter.
+   Der Vertrag kommt zustande, wenn du die Software installierst oder nutzt, nachdem du auf ihn hingewiesen wurdest.
+
+2. Nutzungsrecht
+   Während des Vorabzugangs räumt dir der Anbieter unentgeltlich ein einfaches, nicht übertragbares, nicht
+   unterlizenzierbares und nach Ziffer 8 widerrufliches Recht ein, die Software auf Rechnern zu installieren, über
+   die du verfügst, und sie zusammen mit dem gehosteten Dienst cutshift (https://app.cutshift.hermes-technology.de)
+   für eigene Zwecke zu nutzen, auch um Filme für dein Unternehmen zu erstellen.
+
+3. Einschränkungen
+   Soweit zwingendes Recht nichts anderes erlaubt, darfst du die Software nicht
+   a) vervielfältigen, verbreiten, vermieten, verleihen, veröffentlichen oder Dritten sonst zugänglich machen,
+      ausgenommen Kopien, die für Installation, Betrieb und Datensicherung nötig sind;
+   b) unterlizenzieren oder dieses Nutzungsrecht übertragen;
+   c) ändern, übersetzen, bearbeiten oder abgeleitete Werke daraus erstellen, außer soweit § 69d Abs. 1 UrhG es
+      erlaubt (insbesondere zur Fehlerberichtigung);
+   d) dekompilieren, disassemblieren oder ihren Quellcode auf andere Weise ermitteln, außer soweit § 69e UrhG
+      (zur Herstellung der Interoperabilität) und § 69d Abs. 2 und 3 UrhG es erlauben;
+   e) Urheberrechtsvermerke, Lizenztexte oder Hinweise auf Komponenten Dritter entfernen oder verändern.
+   Alle Rechte an der Software verbleiben beim Anbieter.
+
+4. Vorabzugang, keine zugesicherte Verfügbarkeit
+   Die Software befindet sich im Vorabzugang. Sie kann sich ändern, Fehler enthalten oder eingestellt werden. Der
+   Anbieter schuldet keine Updates, keine Pflege, keinen Support und keine Verfügbarkeit des gehosteten Dienstes.
+
+5. Gewährleistung und Haftung
+   Die Software wird unentgeltlich überlassen. Der Anbieter haftet daher nur für Vorsatz und grobe Fahrlässigkeit,
+   für Sach- und Rechtsmängel nur, wenn er sie arglistig verschwiegen hat (entsprechend §§ 521, 523, 524 BGB). Diese
+   Beschränkung gilt nicht für die Haftung für Schäden aus der Verletzung des Lebens, des Körpers oder der
+   Gesundheit, nicht für die Haftung nach dem Produkthaftungsgesetz und nicht für die Haftung aus einer
+   übernommenen Garantie. Bitte sichere deine Daten regelmäßig; die Software arbeitet mit deinen Dateien.
+
+6. Komponenten Dritter
+   Die Software enthält Komponenten Dritter und lädt beim ersten Gebrauch weitere (darunter Node.js, FFmpeg, ein
+   Chromium ohne Oberfläche, uv, Python und Sprachmodelle). Für sie gelten ihre eigenen Lizenzen; diese gehen für
+   die jeweilige Komponente diesem Vertrag vor und sind in THIRD_PARTY_NOTICES und im Verzeichnis licences/
+   aufgeführt. Dieser Vertrag schränkt keine Rechte ein, die dir diese Lizenzen gewähren.
+
+7. Daten
+   Was die Software an den gehosteten Dienst schickt und welche Server Dritter sie anspricht, beschreibt die
+   Datenschutzerklärung unter https://cutshift.hermes-technology.de/de/datenschutz/.
+
+8. Laufzeit und Kündigung
+   Das Nutzungsrecht besteht bis zum Ende des Vorabzugangs oder bis zur Kündigung. Du kannst es jederzeit beenden,
+   indem du die Software löschst (`cutshift self uninstall`). Der Anbieter kann es mit einer Frist von zwei Wochen
+   per E-Mail oder durch Ankündigung auf der Website kündigen, aus wichtigem Grund (insbesondere bei einem Verstoß
+   gegen Ziffer 3) fristlos. Mit dem Ende des Nutzungsrechts musst du die Nutzung einstellen und die Software
+   löschen. Die Ziffern 3, 5 und 10 gelten fort.
+
+9. Änderungen
+   Der Anbieter kann diesen Vertrag für künftige Versionen der Software ändern. Ein geänderter Vertrag gilt für ein
+   Update erst, wenn du dieses Update installierst; auf wesentliche Änderungen weist der Anbieter vorher hin. Für
+   bereits installierte Versionen gelten Änderungen nie.
+
+10. Anwendbares Recht, Teilunwirksamkeit
+   Es gilt deutsches Recht unter Ausschluss des UN-Kaufrechts. Bist du Verbraucher, entzieht dir diese Rechtswahl
+   nicht den Schutz der zwingenden Bestimmungen des Rechts des Staates, in dem du deinen gewöhnlichen Aufenthalt
+   hast. Ist eine Bestimmung unwirksam, bleibt der Vertrag im Übrigen wirksam.
