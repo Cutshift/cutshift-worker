@@ -11,7 +11,8 @@ This repository holds the worker's releases, this README and its licence. The so
 
 ## Install
 
-Linux (x64, arm64) and macOS (Apple silicon, Intel). On Windows, in WSL2.
+Linux (x64, arm64) and macOS (Apple silicon, Intel). On Windows, in WSL2. On an Intel Mac the voices cannot run
+locally (PyTorch publishes no macOS x86_64 wheels since 2.2.2): use an Azure voice there.
 
 ```sh
 curl -fsSL https://cutshift.hermes-technology.de/install.sh | sh
@@ -66,7 +67,7 @@ sha256sum -c SHA256SUMS --ignore-missing
 Release-signing public key:
 
 ```
-RWRi0BMtdbIquQFTMETvDUY/DbNnpKTlaTLiAhpOW6k9PrVWhPJpqaJS
+```
 ```
 
 ## First steps
