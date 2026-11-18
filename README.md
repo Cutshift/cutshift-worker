@@ -67,7 +67,7 @@ sha256sum -c SHA256SUMS --ignore-missing
 Release-signing public key:
 
 ```
-```
+RWRi0BMtdbIquQFTMETvDUY/DbNnpKTlaTLiAhpOW6k9PrVWhPJpqaJS
 ```
 
 ## First steps
