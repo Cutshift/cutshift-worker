@@ -1,0 +1,122 @@
+# A new Mac user's first run of the published worker, on GitHub's macOS runners: the landing page's `curl … | sh`,
+# PATH in a new login shell (zsh, the macOS default), --version, `init my-film`, one headless scene through every part
+# the worker sets up on first use (ffmpeg, the browser, the Remotion compositor, uv and the voices), and
+# `cutshift self uninstall`. The macOS twin of the monorepo's `just worker-vm-test` (tools/worker-dist/vm), which runs
+# the same steps on Linux. Started by hand only (Actions → macOS first run → Run workflow).
+#
+# Apple silicon (darwin-arm64) runs the whole scene. Intel (darwin-x64) has no local voices (PyTorch publishes no macOS
+# x86_64 wheels since 2.2.2): there the scene must stop with the worker's own message saying so.
+name: macOS first run
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "Worker version (empty: the latest release)"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  first-run:
+    name: ${{ matrix.target }} (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { runner: macos-15, target: darwin-arm64, arch: arm64, voices: "yes" }
+          - { runner: macos-15-intel, target: darwin-x64, arch: x86_64, voices: "no" }
+    env:
+      CUTSHIFT_VERSION: ${{ inputs.version }}
+      OUT: ${{ github.workspace }}/out
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - name: Machine
+        run: |
+          mkdir -p "$OUT"
+          echo "| step | result | detail |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|---|---|---|" >> "$GITHUB_STEP_SUMMARY"
+          sw_vers | tee "$OUT/machine.txt"
+          uname -m | tee -a "$OUT/machine.txt"
+          [ "$(uname -m)" = "${{ matrix.arch }}" ] || { echo "expected ${{ matrix.arch }}, got $(uname -m)"; exit 1; }
+          # a clean user: no cutshift from an earlier run
+          [ ! -e "$HOME/.cutshift" ] || { echo "$HOME/.cutshift exists before the install"; exit 1; }
+
+      - name: curl … | sh
+        run: |
+          [ -n "$CUTSHIFT_VERSION" ] || unset CUTSHIFT_VERSION
+          curl -fsSL https://cutshift.hermes-technology.de/install.sh | sh -s -- --yes 2>&1 | tee "$OUT/install.log"
+          [ -x "$HOME/.cutshift/bin/cutshift" ]
+          echo "| install | PASS | $(grep -o 'cutshift-worker-[0-9.]*-${{ matrix.target }}' "$OUT/install.log" | head -n 1) |" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: A new login shell has cutshift on PATH
+        run: |
+          got=$(env -i HOME="$HOME" USER="$USER" TERM=dumb PATH=/usr/bin:/bin:/usr/sbin:/sbin zsh -ilc 'command -v cutshift' | tail -n 1)
+          echo "zsh -il: $got"
+          [ "$got" = "$HOME/.cutshift/bin/cutshift" ]
+          echo "| zsh -il PATH | PASS | $got |" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: --version and init
+        run: |
+          v=$(zsh -ilc 'cutshift --version' | tail -n 1)
+          echo "$v"
+          case "$v" in "cutshift "[0-9]*) ;; *) exit 1 ;; esac
+          zsh -ilc 'cd ~ && cutshift init my-film' 2>&1 | tee "$OUT/init.log"
+          [ -f "$HOME/my-film/video.yaml" ]
+          echo "| --version, init | PASS | $v |" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: One headless scene (every part set up on first use)
+        run: |
+          set +e
+          zsh -ilc 'cd ~/my-film && cutshift scene video.yaml title' > "$OUT/scene.log" 2>&1
+          rc=$?
+          set -e
+          grep -v '^RENDER_PROGRESS' "$OUT/scene.log" | tail -n 40
+          fail=0
+          row() { echo "| $1 | $2 | $3 |" >> "$GITHUB_STEP_SUMMARY"; [ "$2" != FAIL ] || fail=1; }
+          for part in "ffmpeg" "the browser" "the Remotion compositor" "uv"; do
+            if grep -q "^cutshift: ${part}[^:]*: done" "$OUT/scene.log"; then row "set up: $part" PASS ""
+            else row "set up: $part" FAIL "$(grep -m1 "could not set up $part" "$OUT/scene.log" | cut -c1-160)"; fi
+          done
+          if [ "${{ matrix.voices }}" = yes ]; then
+            if grep -q "^cutshift: the voices[^:]*: done" "$OUT/scene.log"; then row "set up: the voices" PASS ""
+            else row "set up: the voices" FAIL "$(grep -m1 'could not set up the voices' "$OUT/scene.log" | cut -c1-160)"; fi
+            n=$(find "$HOME/my-film/.audio-cache" -name '*.wav' 2>/dev/null | wc -l | tr -d ' ')
+            if [ "$n" -gt 0 ]; then row "a voice spoke the line" PASS "$n wav"; else row "a voice spoke the line" FAIL "no wav"; fi
+            if [ "$rc" = 0 ] && [ -s "$HOME/my-film/clips/title.mp4" ]; then
+              row "scene rendered" PASS "clips/title.mp4, $(wc -c < "$HOME/my-film/clips/title.mp4" | tr -d ' ') bytes"
+            else
+              row "scene rendered" FAIL "exit $rc: $(grep -v '^RENDER_PROGRESS' "$OUT/scene.log" | tail -n 1 | cut -c1-160)"
+            fi
+          else
+            # Intel: no local voices; the worker says so and stops before the voices are set up
+            if grep -q "no local TTS on this machine" "$OUT/scene.log" && [ "$rc" != 0 ]; then
+              row "no local voices on Intel: the worker says so" PASS "$(grep -m1 -o 'no local TTS on this machine[^.]*' "$OUT/scene.log")"
+            else
+              row "no local voices on Intel: the worker says so" FAIL "exit $rc: $(grep -v '^RENDER_PROGRESS' "$OUT/scene.log" | tail -n 1 | cut -c1-160)"
+            fi
+          fi
+          echo "| disk: ~/.cutshift | INFO | $(du -sh "$HOME/.cutshift" | cut -f1) |" >> "$GITHUB_STEP_SUMMARY"
+          exit "$fail"
+
+      - name: self uninstall
+        if: always()
+        run: |
+          [ -x "$HOME/.cutshift/bin/cutshift" ] || exit 0
+          zsh -ilc 'cutshift self uninstall --yes --purge --purge-keys' 2>&1 | tee "$OUT/uninstall.log"
+          got=$(env -i HOME="$HOME" USER="$USER" TERM=dumb PATH=/usr/bin:/bin:/usr/sbin:/sbin zsh -ilc 'command -v cutshift || echo gone' | tail -n 1)
+          [ "$got" = gone ] && [ ! -e "$HOME/.cutshift" ]
+          echo "| self uninstall | PASS | gone from PATH and ~/.cutshift |" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Logs
+        if: always()
+        uses: actions/upload-artifact@v4.6.2
+        with:
+          name: first-run-${{ matrix.target }}
+          path: out/
