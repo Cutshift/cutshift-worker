@@ -10,6 +10,9 @@
 #   the TTS env        nixpkgs' uv and Python 3.12; the PyPI wheels find libstdc++ and zlib (LD_LIBRARY_PATH)
 # The worker's Node runtime and native modules are patched to Nix's loader (autoPatchelfHook), so nix-ld is not needed.
 # On macOS only ffmpeg is replaced; the browser and the TTS env are fetched as on any Mac.
+#
+# The beta branch (github:Cutshift/cutshift-worker/beta) is the same flake with a beta release's sources.json
+# ("channel": "beta"): its package is cutshift-worker-beta and its command cutshift-beta, beside the stable one.
 {
   description = "The cutshift worker: records your app, speaks the narration and cuts the film, on your machine";
 
@@ -20,6 +23,9 @@
     { self, nixpkgs }:
     let
       sources = builtins.fromJSON (builtins.readFile ./sources.json);
+      # "" (stable) or "-beta": the package's and the command's suffix
+      suffix = if (sources.channel or "") == "" then "" else "-${sources.channel}";
+      pname = "cutshift-worker${suffix}";
       targetOf = {
         x86_64-linux = "linux-x64";
         aarch64-linux = "linux-arm64";
@@ -36,7 +42,7 @@
           f system (
             import nixpkgs {
               inherit system;
-              config.allowUnfreePredicate = pkg: nixpkgs.lib.getName pkg == "cutshift-worker";
+              config.allowUnfreePredicate = pkg: nixpkgs.lib.getName pkg == pname;
             }
           )
         );
@@ -113,7 +119,7 @@
           ];
         in
         stdenv.mkDerivation {
-          pname = "cutshift-worker";
+          inherit pname;
           version = sources.version;
           src = tarball;
           nativeBuildInputs = [ pkgs.makeWrapper ] ++ lib.optionals linux [ pkgs.autoPatchelfHook ];
@@ -128,7 +134,7 @@
             rm -rf node_modules/@napi-rs/keyring-*-musl
             mkdir -p $out/libexec/cutshift-worker $out/bin
             cp -r . $out/libexec/cutshift-worker/
-            makeWrapper $out/libexec/cutshift-worker/bin/cutshift $out/bin/cutshift ${lib.escapeShellArgs wrapArgs}
+            makeWrapper $out/libexec/cutshift-worker/bin/cutshift $out/bin/cutshift${suffix} ${lib.escapeShellArgs wrapArgs}
             runHook postInstall
           '';
           passthru = { inherit compositor; };
@@ -138,19 +144,19 @@
             license = lib.licenses.unfree;
             sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
             platforms = [ system ];
-            mainProgram = "cutshift";
+            mainProgram = "cutshift${suffix}";
           };
         };
     in
     {
       packages = forSystems (
-        system: pkgs: rec {
-          cutshift-worker = worker system pkgs;
-          default = cutshift-worker;
+        system: pkgs: {
+          ${pname} = worker system pkgs;
+          default = self.packages.${system}.${pname};
         }
       );
       overlays.default = final: _prev: {
-        cutshift-worker = self.packages.${final.stdenv.hostPlatform.system}.default;
+        ${pname} = self.packages.${final.stdenv.hostPlatform.system}.default;
       };
     };
 }

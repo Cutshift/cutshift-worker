@@ -1,5 +1,9 @@
 # cutshift worker
 
+> **The beta branch.** This branch's flake builds the beta worker 0.2.3-beta.2: the package `cutshift-worker-beta`, the command
+> `cutshift-beta`, installed beside the stable worker (`nix profile install github:Cutshift/cutshift-worker/beta`).
+> The stable worker is on the main branch.
+
 The worker for [cutshift](https://cutshift.hermes-technology.de): narrated product films from a spec. The studio is
 hosted at [app.cutshift.hermes-technology.de](https://app.cutshift.hermes-technology.de); the worker is the one
 thing you install. It runs on your machine, records your app in a real browser, speaks the narration and cuts the
@@ -56,6 +60,19 @@ The flake has packages for x86_64-linux (tested on NixOS) and, built the same wa
 aarch64-darwin and x86_64-darwin (on macOS only ffmpeg comes from nixpkgs). It also has an overlay (`overlays.default`, `pkgs.cutshift-worker`). Update with `nix flake update
 cutshift-worker` (or `nix profile upgrade`), not with `cutshift self update`. The speech environment (Python packages
 and voice models) is still set up in `~/.cutshift` on first use.
+
+The beta worker (for the beta studio, installed beside the stable one) is the same flake on the `beta` branch: its
+package is `cutshift-worker-beta` (the overlay's `pkgs.cutshift-worker-beta`), its command `cutshift-beta`, its home
+`~/.cutshift-beta`:
+
+```sh
+nix profile install github:Cutshift/cutshift-worker/beta
+```
+
+```nix
+inputs.cutshift-worker-beta.url = "github:Cutshift/cutshift-worker/beta";
+home.packages = [ inputs.cutshift-worker-beta.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+```
 
 To check a download by hand:
 
