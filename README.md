@@ -1,6 +1,6 @@
 # cutshift worker
 
-> **The beta branch.** This branch's flake builds the beta worker 0.2.3-beta.2: the package `cutshift-worker-beta`, the command
+> **The beta branch.** This branch's flake builds the beta worker 0.2.3-beta.3: the package `cutshift-worker-beta`, the command
 > `cutshift-beta`, installed beside the stable worker (`nix profile install github:Cutshift/cutshift-worker/beta`).
 > The stable worker is on the main branch.
 
@@ -97,11 +97,12 @@ RWRi0BMtdbIquQFTMETvDUY/DbNnpKTlaTLiAhpOW6k9PrVWhPJpqaJS
 cutshift init my-film --project <id>   # the project folder, linked to your studio project
 cd my-film
 cutshift worker login                  # once per computer: approve it in your browser
-cutshift worker                        # keep it running while you work in the studio
+cutshift worker                        # adds the folder to this computer's worker
 ```
 
-Already have a project folder? Link it once with `cutshift worker --project <id>` in it; after that, plain
-`cutshift worker` is enough there.
+One worker per computer serves all your linked project folders. It asks once whether to start by itself at login
+(`cutshift worker autostart on` later); without that, `cutshift worker` starts it for every linked folder. Already
+have a project folder? Link it once with `cutshift worker --project <id>` in it.
 
 The first start downloads ffmpeg and a headless browser (about 280 MB) in the background; the first narration sets
 up the voices (about 450 MB more). The worker shows what it downloads and when it is ready.
