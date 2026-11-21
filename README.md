@@ -57,6 +57,19 @@ aarch64-darwin and x86_64-darwin (on macOS only ffmpeg comes from nixpkgs). It a
 cutshift-worker` (or `nix profile upgrade`), not with `cutshift self update`. The speech environment (Python packages
 and voice models) is still set up in `~/.cutshift` on first use.
 
+The beta worker (for the beta studio, installed beside the stable one) is the same flake on the `beta` branch: its
+package is `cutshift-worker-beta` (the overlay's `pkgs.cutshift-worker-beta`), its command `cutshift-beta`, its home
+`~/.cutshift-beta`:
+
+```sh
+nix profile install github:Cutshift/cutshift-worker/beta
+```
+
+```nix
+inputs.cutshift-worker-beta.url = "github:Cutshift/cutshift-worker/beta";
+home.packages = [ inputs.cutshift-worker-beta.packages.${pkgs.stdenv.hostPlatform.system}.default ];
+```
+
 To check a download by hand:
 
 ```sh
@@ -77,14 +90,14 @@ RWRi0BMtdbIquQFTMETvDUY/DbNnpKTlaTLiAhpOW6k9PrVWhPJpqaJS
 2. On your computer:
 
 ```sh
-cutshift init my-film --project <id>   # the project folder, linked to your studio project
+cutshift init my-film                  # the project folder (skip this if you have one)
 cd my-film
-cutshift worker login                  # once per computer: approve it in your browser
-cutshift worker                        # keep it running while you work in the studio
+cutshift worker login                  # once per computer: approve it in your browser (it opens by itself)
+cutshift worker --project <id>         # links the folder to your studio project, once, and starts the worker
 ```
 
-Already have a project folder? Link it once with `cutshift worker --project <id>` in it; after that, plain
-`cutshift worker` is enough there.
+One worker per computer serves all your linked project folders. It asks once whether to start by itself at login
+(`cutshift worker autostart on` later); without that, `cutshift worker` starts it for every linked folder.
 
 The first start downloads ffmpeg and a headless browser (about 280 MB) in the background; the first narration sets
 up the voices (about 450 MB more). The worker shows what it downloads and when it is ready.
