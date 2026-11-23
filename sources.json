@@ -1,10 +1,10 @@
 {
-  "version": "0.4.0-beta.1",
+  "version": "0.4.0-beta.2",
   "channel": "beta",
   "releasesUrl": "https://github.com/Cutshift/cutshift-worker/releases/download",
   "targets": {
     "linux-x64": {
-      "sha256": "bec4e3fd9507b34af1b0ad091f4991aaab4da036083ff230e7908f59564e2a25",
+      "sha256": "3932e6ca30f6c6da63080259e50cd55d246ee7c604c107d025183e75852a084c",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-linux-x64-gnu/-/compositor-linux-x64-gnu-4.0.539.tgz",
         "integrity": "sha512-HecJAZPrje7UVO37E6qq/lb7GXn+bm5UQUVDji02BwIe1eMQq75fpkcOQkrZ4VdV8KnGFKAGQq3CbFiplmn/ZA==",
@@ -12,7 +12,7 @@
       }
     },
     "linux-arm64": {
-      "sha256": "4b3b7a49544833819f1e1dd217496dc6ecfaa9545056a7a46a7d44d5159e24b1",
+      "sha256": "fd5b44da6adfbd19269d221809c6a123ae2b41e09c5a58e9bafafe1128231536",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-linux-arm64-gnu/-/compositor-linux-arm64-gnu-4.0.539.tgz",
         "integrity": "sha512-P3gdsInE2eLomuOZMDiCImRb12wVYNzvzuvL0nqVZ2vskhO207lVU+9B5ceb6MyaNRo6jxOzY67iaTxf+BlO7A==",
@@ -20,7 +20,7 @@
       }
     },
     "darwin-arm64": {
-      "sha256": "6fb29c05302bc077b128b198b870d3fffc07a6c2ee97d8ef69a24676f364a9f9",
+      "sha256": "00fe8c1ea0159631994088d0a3ae1683f79a4fee76411a18a597e3fbe73ae1f6",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-darwin-arm64/-/compositor-darwin-arm64-4.0.539.tgz",
         "integrity": "sha512-B5jSFaTWwa7KNeSHcRGNlBzJiOfPjpvDjkSuWrUx721GiBtqUhm2oIh2147cxsESQMHlGbbk6cxMKBqUrDxrvg==",
@@ -28,7 +28,7 @@
       }
     },
     "darwin-x64": {
-      "sha256": "110988cfc84c183578855275f5e449ae960d43fabd036c10ffb0efce61d9953c",
+      "sha256": "cdd7c611223a53e9847bea1acaf28c0b27c5967e0aa2fabebbc5a1175488f412",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-darwin-x64/-/compositor-darwin-x64-4.0.539.tgz",
         "integrity": "sha512-YneSxqpwmdXvGi6+I69o+721Cd0Ff5y5Qc6m98ahKnrX6AuR37hl+yC1oT/gQHE30POYRfSxCADTNGqY5AmP9Q==",
