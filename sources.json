@@ -1,9 +1,9 @@
 {
-  "version": "0.3.1",
+  "version": "0.4.0",
   "releasesUrl": "https://github.com/Cutshift/cutshift-worker/releases/download",
   "targets": {
     "linux-x64": {
-      "sha256": "9d27182d0c97c3a2125ce32bee32e7f06e9e3daa78b0e7b6dcd4cd2f1b0849b7",
+      "sha256": "fde63614d7597f77c874cff95ed8b1e43e9c5e5002732926c6059f4ca9a35f08",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-linux-x64-gnu/-/compositor-linux-x64-gnu-4.0.539.tgz",
         "integrity": "sha512-HecJAZPrje7UVO37E6qq/lb7GXn+bm5UQUVDji02BwIe1eMQq75fpkcOQkrZ4VdV8KnGFKAGQq3CbFiplmn/ZA==",
@@ -11,7 +11,7 @@
       }
     },
     "linux-arm64": {
-      "sha256": "f82a45d470550a8007734dde230701ce571b14e295d04eb88c056db0d122caa3",
+      "sha256": "1eed6cf9fc9871fbd451f8e47d1e1ee39ef40ebd31b2ccbd7ac8347983de4b2b",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-linux-arm64-gnu/-/compositor-linux-arm64-gnu-4.0.539.tgz",
         "integrity": "sha512-P3gdsInE2eLomuOZMDiCImRb12wVYNzvzuvL0nqVZ2vskhO207lVU+9B5ceb6MyaNRo6jxOzY67iaTxf+BlO7A==",
@@ -19,7 +19,7 @@
       }
     },
     "darwin-arm64": {
-      "sha256": "7ab47677e0957c137a5825acbcf881660d7e7f447f89773eb0f68bf74d20a09f",
+      "sha256": "1e91c3795f055b8c5ee5d1f4eb4e0261b9df6975590edef9f2a066ed7b268d20",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-darwin-arm64/-/compositor-darwin-arm64-4.0.539.tgz",
         "integrity": "sha512-B5jSFaTWwa7KNeSHcRGNlBzJiOfPjpvDjkSuWrUx721GiBtqUhm2oIh2147cxsESQMHlGbbk6cxMKBqUrDxrvg==",
@@ -27,7 +27,7 @@
       }
     },
     "darwin-x64": {
-      "sha256": "1e8b1197185959e788de222b2f647a843fe000aeff176118a6799140aae54b03",
+      "sha256": "b925313e9b39241a6e98c0cc6f007fd0404abda77f9184df834e912dca5d895f",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-darwin-x64/-/compositor-darwin-x64-4.0.539.tgz",
         "integrity": "sha512-YneSxqpwmdXvGi6+I69o+721Cd0Ff5y5Qc6m98ahKnrX6AuR37hl+yC1oT/gQHE30POYRfSxCADTNGqY5AmP9Q==",
