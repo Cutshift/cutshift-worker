@@ -1,6 +1,6 @@
 # cutshift worker
 
-> **The beta branch.** This branch's flake builds the beta worker 0.5.0-beta.1: the package `cutshift-worker-beta`, the command
+> **The beta branch.** This branch's flake builds the beta worker 0.5.0-beta.2: the package `cutshift-worker-beta`, the command
 > `cutshift-beta`, installed beside the stable worker (`nix profile install github:Cutshift/cutshift-worker/beta`).
 > The stable worker is on the main branch.
 
