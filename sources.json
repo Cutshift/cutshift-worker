@@ -1,10 +1,10 @@
 {
-  "version": "0.5.0-beta.4",
+  "version": "0.5.0-beta.5",
   "channel": "beta",
   "releasesUrl": "https://github.com/Cutshift/cutshift-worker/releases/download",
   "targets": {
     "linux-x64": {
-      "sha256": "60b6a7a6f00e64198f71fab42a2df781299379b87893d4b9086f01731ad2856f",
+      "sha256": "7e0030360e2b651e96396a35255d00a52aeeb8ea075b6731e6ca190fb4ac9dfd",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-linux-x64-gnu/-/compositor-linux-x64-gnu-4.0.539.tgz",
         "integrity": "sha512-HecJAZPrje7UVO37E6qq/lb7GXn+bm5UQUVDji02BwIe1eMQq75fpkcOQkrZ4VdV8KnGFKAGQq3CbFiplmn/ZA==",
