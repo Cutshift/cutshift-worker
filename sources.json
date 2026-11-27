@@ -1,37 +1,13 @@
 {
-  "version": "0.5.0-beta.2",
+  "version": "0.5.0-beta.3",
   "channel": "beta",
   "releasesUrl": "https://github.com/Cutshift/cutshift-worker/releases/download",
   "targets": {
     "linux-x64": {
-      "sha256": "a55d86a45d42e02b794ae1fb9e8e8e0c0bf3526bfbb6a30d3d6ae6fd40ef9f6d",
+      "sha256": "10ca242b64737077c8f7ad61eadaad8a6e53c0c6d0cbf719ebeb8432e1de9ad5",
       "compositor": {
         "url": "https://registry.npmjs.org/@remotion/compositor-linux-x64-gnu/-/compositor-linux-x64-gnu-4.0.539.tgz",
         "integrity": "sha512-HecJAZPrje7UVO37E6qq/lb7GXn+bm5UQUVDji02BwIe1eMQq75fpkcOQkrZ4VdV8KnGFKAGQq3CbFiplmn/ZA==",
-        "version": "4.0.539"
-      }
-    },
-    "linux-arm64": {
-      "sha256": "809dc40c154de604b4f60dd2f5a9e572094980f38793071526109766bda11240",
-      "compositor": {
-        "url": "https://registry.npmjs.org/@remotion/compositor-linux-arm64-gnu/-/compositor-linux-arm64-gnu-4.0.539.tgz",
-        "integrity": "sha512-P3gdsInE2eLomuOZMDiCImRb12wVYNzvzuvL0nqVZ2vskhO207lVU+9B5ceb6MyaNRo6jxOzY67iaTxf+BlO7A==",
-        "version": "4.0.539"
-      }
-    },
-    "darwin-arm64": {
-      "sha256": "52714b7b211366e863adb34c2cf1475e14201a6b07c59892099166b1839fed77",
-      "compositor": {
-        "url": "https://registry.npmjs.org/@remotion/compositor-darwin-arm64/-/compositor-darwin-arm64-4.0.539.tgz",
-        "integrity": "sha512-B5jSFaTWwa7KNeSHcRGNlBzJiOfPjpvDjkSuWrUx721GiBtqUhm2oIh2147cxsESQMHlGbbk6cxMKBqUrDxrvg==",
-        "version": "4.0.539"
-      }
-    },
-    "darwin-x64": {
-      "sha256": "30334373169f7fcf6cc15e75f37eb7ee2fd0b8bf8ff27e684b7aedd63f1c8414",
-      "compositor": {
-        "url": "https://registry.npmjs.org/@remotion/compositor-darwin-x64/-/compositor-darwin-x64-4.0.539.tgz",
-        "integrity": "sha512-YneSxqpwmdXvGi6+I69o+721Cd0Ff5y5Qc6m98ahKnrX6AuR37hl+yC1oT/gQHE30POYRfSxCADTNGqY5AmP9Q==",
         "version": "4.0.539"
       }
     }
